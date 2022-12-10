@@ -1,4 +1,33 @@
-h1 {
-    background-color: red;
-    font-size: 22px;
+@use './mixin';
+@use './variables' as *;
+
+
+.navbar_desktop {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+
+    ul {
+
+        margin: auto;
+    }
+
+    ul li {
+        list-style-type: none;
+        display: inline-block;
+        transition: 0.7s all;
+    }
+
+    ul :hover {
+        background-color: #088;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #fff;
+        padding: 30px;
+    }
 }
