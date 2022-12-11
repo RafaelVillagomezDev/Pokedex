@@ -1,7 +1,12 @@
 function Error() {
   return (
     <div className="Error">
-      <h1>Error</h1>
+      <img
+        alt="error_image"
+        id="error"
+        src="./assets/error.jpg"
+        srcSet="/assets/error_mobile.jpg 1x, /assets/error_mobile.jpg 2x"
+      />
     </div>
   )
 }

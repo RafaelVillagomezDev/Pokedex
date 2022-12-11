@@ -1,0 +1,40 @@
+@use './mixin' as *;
+@use './variables' as *;
+
+#container_card {
+    background-color: $base-dark-color ;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+}
+
+.card_pokemon {
+    background-color: rebeccapurple;
+    min-width: 200px;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+}
+
+.card_picture {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        width: 100%;
+        background-color: red;
+        padding: 1rem 2rem 1rem 2rem;
+    }
+}
+
+.card_name_pokemon {
+    display: flex;
+    flex-direction: row;
+}
+
+.card_stats_pokemon {
+    display: flex;
+    flex-direction: row;
+}

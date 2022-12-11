@@ -1,0 +1,15 @@
+@use './mixin' as *;
+@use './variables' as *;
+@use './search';
+@use './card';
+
+.container_home_header {
+    display: flex;
+    flex-direction: row;
+    background-color: $base-dark-color;
+    justify-content: center;
+
+    div {
+        padding: 2.5rem;
+    }
+}
