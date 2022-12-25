@@ -2,7 +2,7 @@
 
 @mixin media($size) {
     @if $size ==phone-only {
-        @media (min-width: 576px) {
+        @media (max-width: 576px) {
             @content;
         }
     }
