@@ -1,11 +1,15 @@
+import { PokemonContext } from '../App'
+import { useContext } from 'react'
+
 function Card() {
+  const data = useContext(PokemonContext)
   return (
     <div id="container_card">
       <div className="card_pokemon">
         <div className="card_picture">
           <div className="card_name_pokemon">
             <div>
-              <h1>BULLBASUR</h1>
+              <h1>{}</h1>
               <sub>Hierba</sub>
 
               <ul>
