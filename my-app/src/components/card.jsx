@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
-import { getPokemon } from '../api/api'
-
+import { PokemonContext } from '../App'
+import { useContext } from 'react'
 function Card() {
   const data = useContext(PokemonContext)
   return (
