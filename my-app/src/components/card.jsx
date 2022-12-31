@@ -3,14 +3,14 @@ import { useContext } from 'react'
 
 function Card() {
   const data = useContext(PokemonContext)
-  return data.results.map((data2) => {
-    return (
-      <div id="container_card">
-        <div className="card_pokemon">
+  return (
+    <div id="container_card">
+      {data?.map((pokeCard) => (
+        <div className="card_pokemon" key={pokeCard.name}>
           <div className="card_picture">
             <div className="card_name_pokemon">
               <div>
-                <h1>{}</h1>
+                <h1>{pokeCard.name}</h1>
                 <sub>Hierba</sub>
 
                 <ul>
@@ -39,9 +39,9 @@ function Card() {
             </div>
           </div>
         </div>
-      </div>
-    )
-  })
+      ))}
+    </div>
+  )
 }
 
 export default Card
