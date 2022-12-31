@@ -1,16 +1,21 @@
-import { PokemonContext } from '../App'
-import { useContext } from 'react'
+import { useState, useEffect } from 'react'
+import { getPokemon } from '../api/api'
 
 function Card() {
-  const data = useContext(PokemonContext)
-  return data.results.map((data2) => {
-    return (
-      <div id="container_card">
+  let [pokemon, setPokemon] = useState([])
+
+  useEffect(() => {
+    getPokemon().then((data) => setPokemon(data))
+  }, [])
+
+  return (
+    <div id="container_card">
+      {pokemon?.results.map((p) => (
         <div className="card_pokemon">
           <div className="card_picture">
             <div className="card_name_pokemon">
               <div>
-                <h1>{}</h1>
+                <h1>{p.name}</h1>
                 <sub>Hierba</sub>
 
                 <ul>
@@ -39,9 +44,11 @@ function Card() {
             </div>
           </div>
         </div>
-      </div>
-    )
-  })
+      ))}
+    </div>
+  )
 }
 
 export default Card
+
+//

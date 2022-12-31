@@ -1,4 +1,5 @@
-import axios, * as others from 'axios'
+import axios from 'axios'
+
 const { REACT_APP_BASE_URL } = process.env
 
 export async function getPokemon() {
