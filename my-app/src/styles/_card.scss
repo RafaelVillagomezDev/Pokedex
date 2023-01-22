@@ -9,11 +9,11 @@
 }
 
 .card_pokemon {
-    background-color: rebeccapurple;
     min-width: 200px;
     width: 100%;
     height: auto;
     padding: 1rem;
+    border-radius: 12px;
 }
 
 .card_picture {
@@ -26,22 +26,84 @@
         width: 100%;
         background-color: red;
         padding: 1rem 2rem 1rem 2rem;
+       
     }
 }
 
 .card_name_pokemon {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
+    border-top-left-radius: 12px;
+    border-top-right-radius:12px ;
 }
 
 .card_stats_pokemon {
     display: flex;
     flex-direction: row;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
+
+
+.card_image{
+    display: flex;
+    justify-content: center;
+    img{
+        width: 50%;
+
+    }
+}
+
+
+.card_data_pokemon{
+    #title_pokemon{
+        font-size: 80px;
+    }
+
+    sub{
+        font-size: 22px;
+        line-height: 22px;
+    }
+
+    .stats_data{
+        font-size: 25px;
+        padding-top: 20px;
+        li{
+            padding-top: 15px;
+        }
+
+        .data_habilities{
+            li{
+               padding-left: 12px;
+            }
+        }
+    }
+}
+
+
 
 @include media(phone-only) {
     .card_name_pokemon {
-        flex-direction: column-reverse;
+       
+        flex-direction:column-reverse; 
+        
+    }
+
+    .card_image{
+        
+        justify-content: center;
+        
+    }
+
+    .card_data_pokemon{
+        text-align: center;
+        #title_pokemon{
+            font-size: 22px;
+           
+        }
     }
 
 }
+
+
+
