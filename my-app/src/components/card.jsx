@@ -5,7 +5,12 @@ function Card() {
   return (
     <div id="container_card">
       {
-        console.log(results[0].name)
+        results.map((p)=>{
+          return (<div className="card_pokemon" key={p.id} >
+          <h1>{p.name}</h1>
+          </div>)
+
+        })
       }
     </div>
   );

@@ -14,11 +14,12 @@ const { REACT_APP_BASE_URL } = process.env
 export const PokemonContext = createContext()
 
 function App() {
+  
   let [pokemon, setPokemon] = useState([])
   // getPokemon().then((data) => setPokemon(data))
+  
   useEffect(() => {
-     
-      let pokemones=[]
+    const pokemones=[]
        axios
         .get(REACT_APP_BASE_URL)
         .then(response =>{
@@ -26,12 +27,12 @@ function App() {
           resultado.forEach((elemento)=>{
             axios.get(elemento.url).then(response2=>{
                 pokemones.push(response2.data)
-                
-            }).catch(err=>{
+              
+            }).then(()=>setPokemon(pokemones)).catch(err=>{
               console.log(err)
             })
           })
-        }).then(()=>setPokemon(pokemones))
+        })
         .catch(function (error) {
           // handle error
           console.log(error)
