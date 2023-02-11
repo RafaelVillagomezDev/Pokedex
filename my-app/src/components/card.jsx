@@ -1,6 +1,7 @@
 import { PokemonContext } from "../App";
 import { useContext } from "react";
 import { Styled } from "../StylesComponent/card";
+
 function Card() {
   const results = useContext(PokemonContext);
 
@@ -8,10 +9,11 @@ function Card() {
     <div id="container_card">
       {results.map((pokemon) => {
         return (
-          <Styled.CardPokemon key={pokemon.id}>
+          <Styled.CardPokemon key={pokemon.id} color={pokemon.types[0].type.name} >
             <Styled.CardPicture>
                <Styled.CardPokemonStats>
-                 <h1>ss</h1>
+                 <h1>{pokemon.name.toUpperCase()}</h1>
+                 <sub>Type:{pokemon.types[0].type.name}</sub>
                </Styled.CardPokemonStats>
                <Styled.CardPokemonImage>
                 <Styled.CardImage   src={pokemon.sprites.other.dream_world.front_default}  alt={pokemon.name}/>
