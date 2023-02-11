@@ -2,8 +2,6 @@ import './App.scss'
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/header'
 import Home from './pages/home/home'
-
-
 import { useState, useEffect, createContext } from 'react'
 import About from './pages/about/about'
 import Error from './pages/error/error'
