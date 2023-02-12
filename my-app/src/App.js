@@ -31,6 +31,7 @@ function App() {
   };
 
   const getData=(data)=>{
+      
       setPokemonBuscar(data)
       
   }
@@ -41,18 +42,13 @@ function App() {
     const pokemones = [];
 
     let url=`${REACT_APP_BASE_URL}?offset=${pagina}&limit=20`
-    let url2=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
+   
   
     axios
-      .get(pokemonBuscar.length>0?url2:url)
+      .get(url)
       .then((response) => {
         const resultado = response.data.results;
-        if(response.data.name===pokemonBuscar.toLocaleLowerCase()){
-          pokemones.push()
-          console.log(pokemones)
-          setPokemon([response.data])
-           
-        }else{
+       
           resultado.forEach((elemento) => {
             axios
             .get(elemento.url)
@@ -67,13 +63,32 @@ function App() {
         });
         }
         
-      })
+      )
       .catch(function (error) {
         // handle error
         console.log(error);
       });
-  }, [pagina,pokemonBuscar]);
+  }, [pagina]);
 
+  useEffect(()=>{
+    let url2=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
+    const pokemones = [];
+
+    axios
+      .get(url2)
+      .then((response) => {
+        pokemones.push(response.data)
+        setPokemon(pokemones)
+          
+        }
+        
+      )
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+
+  },[pokemonBuscar])
   
   return (
     <div id="app" className="App">
