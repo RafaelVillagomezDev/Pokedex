@@ -2,6 +2,8 @@ import Search from '../../components/search'
 
 import Card from '../../components/card'
 
+
+
 function Home() {
   return (
     <div className="Home">
@@ -9,6 +11,7 @@ function Home() {
         <Search />
       </div>
       <Card />
+  
     </div>
   )
 }

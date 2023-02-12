@@ -38,6 +38,16 @@ export const Styled = {
             return  color='#C7CBC6';
           case 'ground':
             return color='#E0900D ';
+          case 'psychic':
+            return color='#FF7F50';
+          case 'ghost':
+            return color='#E6E6FA'
+          case 'fighting':
+            return color='Turquoise'
+          case 'rock':
+            return color='#CD853F';
+          case 'icc':
+            return color='#9370DB';
         default:
           return   color='white';
         
