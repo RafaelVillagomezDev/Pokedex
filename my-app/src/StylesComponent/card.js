@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import { devices } from "../StylesComponent/mixin";
 
-const color={
-   fire:'redd',
-   water:'blue'
 
-}
 export const Styled = {
   CardPokemon: styled.div`
     min-width: 200px;
@@ -43,7 +39,7 @@ export const Styled = {
           case 'ground':
             return color='#E0900D ';
         default:
-          return   color='black';
+          return   color='white';
         
 
       }
@@ -55,14 +51,19 @@ export const Styled = {
     display: flex;
     flex-direction:column ;
     margin-bottom: 1rem;
+    color: #E1F24D;
+     font-weight: bold;
+    -webkit-text-stroke: 2px black;
+    font-family: 'PokemonSolid' !important;
     h1{
       text-align: left;
       line-height: 2rem;
       font-size: 18px;
       text-align: center;
+  
       @media ${devices.laptop} {
         font-size: 32px;
-
+      
       }
       
      }
@@ -107,5 +108,19 @@ export const Styled = {
       width: 100%;
       }
     
+  `,
+  CardStatsData:styled.ul`
+       font-size: 18px;
+       margin-left: 2rem;
+        padding-top: 20px;
+        line-height: 1rem;
+        li{
+            padding-top: 6px;
+        }
+
+        @media ${devices.laptop} {
+          font-size: 20px;
+      }
+
   `
 };

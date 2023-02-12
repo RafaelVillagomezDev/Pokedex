@@ -1,6 +1,13 @@
 @use './mixin' as *;
 @use './variables' as *;
 
+.data_pokeball::before{
+    content: url('../images/pokeball.png');
+    position: relative;
+    top: 12px;
+    padding-right: 6px;
+}
+
 #container_card {
     background-color: $base-dark-color ;
     width: 100%;
