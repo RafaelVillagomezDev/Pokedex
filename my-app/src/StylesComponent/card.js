@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { devices } from "../StylesComponent/mixin";
 
 const color={
-   fire:'red',
+   fire:'redd',
    water:'blue'
 
 }
