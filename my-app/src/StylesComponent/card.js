@@ -14,7 +14,41 @@ export const Styled = {
     padding: 1rem;
     border-radius: 12px;
     margin-bottom: 1rem;
-    background-color:${props=>props.color==='fire'?'pink':'red'}
+    background-color:${props=>{
+      let color=props.color
+      switch(color){
+        case 'fire':
+          return color='#F22713'
+          
+          case 'water':
+            return color='#428AE7'
+      
+          case 'electric':
+            return color='yellow'
+         
+          case 'bug':
+            return color='grey'
+      
+          case 'grass':
+         return color='#8AD10D'
+         
+          case 'poison':
+            return color='#207E0D'
+       
+          case 'fairy':
+            return  color='pink'
+         
+          case 'normal':
+            return  color='#C7CBC6';
+          case 'ground':
+            return color='#E0900D ';
+        default:
+          return   color='black';
+        
+
+      }
+    
+    }}
     
   `,
   CardPicture: styled.div`

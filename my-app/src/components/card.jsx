@@ -2,9 +2,10 @@ import { PokemonContext } from "../App";
 import { useContext } from "react";
 import { Styled } from "../StylesComponent/card";
 
+
 function Card() {
   const results = useContext(PokemonContext);
-
+  
   return (
     <div id="container_card">
       {results.map((pokemon) => {

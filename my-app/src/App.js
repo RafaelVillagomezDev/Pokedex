@@ -14,6 +14,7 @@ export const PokemonContext = createContext()
 function App() {
   
   let [pokemon, setPokemon] = useState([])
+
   // getPokemon().then((data) => setPokemon(data))
   
   useEffect(() => {
