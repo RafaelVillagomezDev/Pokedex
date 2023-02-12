@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/header";
 import Home from "./pages/home/home";
 import { useState, useEffect, createContext } from "react";
-import About from "./pages/about/about";
 import Error from "./pages/error/error";
 import axios from "axios";
 import Search from "./components/search";
@@ -30,9 +29,13 @@ function App() {
     setPagina((pagina) => (pagina >= 20 ? pagina - 20 : 0));
   };
 
+  const HandleRefresh=()=>{
+    window.location.reload(false);
+  }
+
   const getData=(data)=>{
-      
-      setPokemonBuscar(data)
+       let datos=data.toLocaleLowerCase()
+      setPokemonBuscar(datos)
       
   }
 
@@ -42,13 +45,18 @@ function App() {
     const pokemones = [];
 
     let url=`${REACT_APP_BASE_URL}?offset=${pagina}&limit=20`
-   
+    let url2=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
   
     axios
-      .get(url)
+      .get(pokemonBuscar.length>0?url2:url)
       .then((response) => {
         const resultado = response.data.results;
-       
+        if(response.data.name===pokemonBuscar.toLocaleLowerCase()){
+          pokemones.push(response.data)
+          console.log(pokemones)
+          setPokemon(pokemones)
+           
+        }else{
           resultado.forEach((elemento) => {
             axios
             .get(elemento.url)
@@ -63,32 +71,13 @@ function App() {
         });
         }
         
-      )
+      })
       .catch(function (error) {
         // handle error
         console.log(error);
       });
-  }, [pagina]);
+  }, [pagina,pokemonBuscar]);
 
-  useEffect(()=>{
-    let url2=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
-    const pokemones = [];
-
-    axios
-      .get(url2)
-      .then((response) => {
-        pokemones.push(response.data)
-        setPokemon(pokemones)
-          
-        }
-        
-      )
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-
-  },[pokemonBuscar])
   
   return (
     <div id="app" className="App">
@@ -108,17 +97,19 @@ function App() {
                 <div className="btns">
                
                     <button  className="btn_anterior" onClick={HandlePrev}>Before</button>
-                  
+                    <button className="btn_refresh" onClick={HandleRefresh}>Refresh</button>
                     <button className="btn_siguiente" onClick={HandleNext}>Next</button>
-                
+                    
                 </div>
                 
+                </div>
+                <div className="footer">
+                  <h1>Con Amor Yandry</h1>
                 </div>
               </div>
+          
             }
           />
-
-          <Route path="about" element={<About />} />
           <Route path="*" element={<Error />} />
         </Routes>
         

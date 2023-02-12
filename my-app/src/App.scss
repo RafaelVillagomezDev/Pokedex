@@ -34,6 +34,7 @@
     color: white !important;
     margin-right: 1rem;
     padding: 0.50rem;
+    
     border-radius: 12px;
     background-color: yellow;
    
@@ -43,8 +44,31 @@
 .btn_siguiente{
     color: white !important;
     padding: 0.50rem;
+    margin-right: 1rem;
     border-radius: 12px;
     background-color: violet;
    
+}
+
+.btn_refresh{
+    color: white !important;
+    margin-right: 1rem;
+    padding: 0.50rem;
+    border-radius: 12px;
+    background-color: blue;
+   
+}
+
+.footer{
+    background-color: black;
+    height: 60px;
+    text-align: center;
+    h1{
+        color: white;
+    }
+    h1::after{
+        content: url('./images/corazon.png');
+        
+    }
 }
 
