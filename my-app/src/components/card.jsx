@@ -15,7 +15,7 @@ function Card() {
           >
             <Styled.CardPicture>
               <Styled.CardPokemonStats>
-                <h1>{pokemon.name.toUpperCase()}</h1>
+                <h1>{pokemon.name.toUpperCase()} #{pokemon.id}</h1>
                 <sub>Type:{pokemon.types[0].type.name}</sub>
                 <Styled.CardStatsData>
                   <li>
@@ -23,6 +23,9 @@ function Card() {
                   </li>
                   <li>
                     Height:<span> {pokemon.height} Mt </span>
+                  </li>
+                  <li>
+                    Base experience:<span> {pokemon.base_experience}</span>
                   </li>
                   <li>
                     <h1>Habilities</h1>
