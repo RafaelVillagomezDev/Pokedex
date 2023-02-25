@@ -14,54 +14,50 @@ export const PokemonContext = createContext();
 function App() {
   let [pokemon, setPokemon] = useState([]);
 
-  var [pagina, setPagina] = useState(0);
+  // var [pagina, setPagina] = useState(0);
 
-  let [pokemonBuscar,setPokemonBuscar]=useState('')
+  // let [pokemonBuscar,setPokemonBuscar]=useState('')
 
 
   
-  const HandleNext = () => {
-    setPagina((pagina) => pagina + 20);
-    console.log(pagina);
-  };
+  // const HandleNext = () => {
+  //   console.log(pagina);
+  //   setPagina((pagina) => pagina + 20);
+    
+  // };
 
-  const HandlePrev = () => {
-    setPagina((pagina) => (pagina >= 20 ? pagina - 20 : 0));
-  };
+  // const HandlePrev = () => {
+  //   setPagina((pagina) => (pagina - 20));
+  // };
 
-  const HandleRefresh=()=>{
-    window.location.reload(false);
-  }
+  // const HandleRefresh=()=>{
+  //   window.location.reload(false);
+  // }
 
-  const getData=(data)=>{
-       let datos=data.toLocaleLowerCase()
-      setPokemonBuscar(datos)
+  // const getData=(data)=>{
+  //      let datos=data.toLocaleLowerCase()
+  //     setPokemonBuscar(datos)
       
-  }
+  // }
 
  
 
   useEffect(() => {
-    const pokemones = [];
+    
 
-    let url=`${REACT_APP_BASE_URL}?offset=${pagina}&limit=20`
-    let url2=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
-  
+    // let url=`${REACT_APP_BASE_URL}?offset=${pagina}&limit=20`
+    const pokemones = [];
     axios
-      .get(pokemonBuscar.length>0?url2:url)
+      .get(REACT_APP_BASE_URL)
       .then((response) => {
         const resultado = response.data.results;
-        if(response.data.name===pokemonBuscar.toLocaleLowerCase()){
-          pokemones.push(response.data)
-          console.log(pokemones)
-          setPokemon(pokemones)
-           
-        }else{
           resultado.forEach((elemento) => {
             axios
             .get(elemento.url)
             .then((response2) => {
+              
               pokemones.push(response2.data);
+             
             })
             .then(() => setPokemon(pokemones))
             .catch((err) => {
@@ -69,14 +65,14 @@ function App() {
             });
           
         });
-        }
+        
         
       })
       .catch(function (error) {
         // handle error
         console.log(error);
       });
-  }, [pagina,pokemonBuscar]);
+  }, []);
 
   
   return (
@@ -89,16 +85,16 @@ function App() {
             element={
               <div>
                 <div className="container_home_header">
-                  <Search onSubmit={getData}/>
+                  <Search />
                 </div>
                
                 <Home />
                 <div className="pagination">
                 <div className="btns">
-               
+{/*                
                     <button  className="btn_anterior" onClick={HandlePrev}>Before</button>
                     <button className="btn_refresh" onClick={HandleRefresh}>Refresh</button>
-                    <button className="btn_siguiente" onClick={HandleNext}>Next</button>
+                    <button className="btn_siguiente" onClick={HandleNext}>Next</button> */}
                     
                 </div>
                 
