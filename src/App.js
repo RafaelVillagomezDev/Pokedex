@@ -45,33 +45,37 @@ function App() {
 
  
 
-  useEffect(()=>{
+  // useEffect(()=>{
     
-    let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
-    const pokemones=[]
-    console.log(pokemonBuscar)
-    axios.get(urlBuscar).then((response)=>{
-      
-       if(response.data.name.toLocaleLowerCase()===pokemonBuscar){
-        
-          pokemones.push(response.data)  
-          setPokemon(pokemones)
-       }
-    }
-      ).catch(function (error) {
-        // handle error
-        console.log(error);
-      });
+  //   let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
+  //   const pokemones=[]
+  //   console.log(pokemonBuscar)
+  
 
-  },[pokemonBuscar])
+  // },[pokemonBuscar])
  
 
   useEffect(() => {
     
 
+    let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
 
     const pokemones = [];
-    axios
+    if(pokemonBuscar.length>0){
+      axios.get(urlBuscar).then((response)=>{
+      
+        if(response.data.name.toLocaleLowerCase()===pokemonBuscar){
+           console.log(response)
+           pokemones.push(response.data)  
+           setPokemon(pokemones)
+        }
+     }
+       ).catch(function (error) {
+         // handle error
+         console.log(error);
+       });
+    }else{
+      axios
       .get(url)
       .then((response) => {
         const resultado = response.data.results;
@@ -105,7 +109,9 @@ function App() {
         // handle error
         console.log(error);
       });
-  }, [url]);
+    }
+   
+  }, [url,pokemonBuscar]);
 
  
 
