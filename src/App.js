@@ -13,88 +13,125 @@ export const PokemonContext = createContext();
 
 function App() {
   let [pokemon, setPokemon] = useState([]);
-
-  // var [pagina, setPagina] = useState(0);
-
-  // let [pokemonBuscar,setPokemonBuscar]=useState('')
+  let [url,setUrl]=useState(REACT_APP_BASE_URL);
+  let [paginaNext, setPaginaNext] = useState("");
+  let [paginapPrev, setPaginaPrev] = useState("");
+  let [pokemonBuscar,setPokemonBuscar]=useState('')
 
 
   
-  // const HandleNext = () => {
-  //   console.log(pagina);
-  //   setPagina((pagina) => pagina + 20);
+  const HandleNext = () => {
     
-  // };
+    console.log("efeccto2 ")
+     setUrl(paginaNext)
+  };
 
-  // const HandlePrev = () => {
-  //   setPagina((pagina) => (pagina - 20));
-  // };
+  const HandlePrev = () => {
+    console.log("efeccto3 ")
+    setUrl(paginapPrev)
+  };
 
-  // const HandleRefresh=()=>{
-  //   window.location.reload(false);
-  // }
+  const HandleRefresh=()=>{
+    window.location.reload(false);
+  }
 
-  // const getData=(data)=>{
-  //      let datos=data.toLocaleLowerCase()
-  //     setPokemonBuscar(datos)
+  const getData=(data)=>{
+       let datos=data.toLocaleLowerCase()
+       setPokemonBuscar(datos)
       
-  // }
 
+      
+  }
+
+ 
+
+  useEffect(()=>{
+    
+    let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
+    const pokemones=[]
+    console.log(pokemonBuscar)
+    axios.get(urlBuscar).then((response)=>{
+      
+       if(response.data.name.toLocaleLowerCase()===pokemonBuscar){
+        
+          pokemones.push(response.data)  
+          setPokemon(pokemones)
+       }
+    }
+      ).catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+
+  },[pokemonBuscar])
  
 
   useEffect(() => {
     
 
-    // let url=`${REACT_APP_BASE_URL}?offset=${pagina}&limit=20`
+
     const pokemones = [];
     axios
-      .get(REACT_APP_BASE_URL)
+      .get(url)
       .then((response) => {
         const resultado = response.data.results;
-          resultado.forEach((elemento) => {
-            axios
-            .get(elemento.url)
-            .then((response2) => {
-              
-              pokemones.push(response2.data);
-             
-            })
-            .then(() => setPokemon(pokemones))
-            .catch((err) => {
-              console.log(err);
-            });
+        if(typeof response.data.next!='undefined' ?setPaginaNext(response.data.next):setPaginaNext(REACT_APP_BASE_URL));
+        
+        if(typeof response.data.previos!='undefined' ?setPaginaPrev(response.data.previous):setPaginaPrev(REACT_APP_BASE_URL));
+
+         let promisesArray =resultado.map(result=>{
           
-        });
+           return axios.get(result.url).then(responseData=>
+            
+              
+              pokemones.push(responseData.data)
+            
+
+           )
+         })
+        
+         return Promise.all(promisesArray)
+      }).then(()=>
+        {
+          pokemones.sort(((a, b) => a.id - b.id));
+          
+          setPokemon(pokemones)
+          
+        }
         
         
-      })
+      )
       .catch(function (error) {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [url]);
+
+ 
 
   
   return (
     <div id="app" className="App">
-      <PokemonContext.Provider value={pokemon}>
+
         <Header />
+         
+        <PokemonContext.Provider value={pokemon}>
         <Routes>
           <Route
             path="/"
             element={
               <div>
                 <div className="container_home_header">
-                  <Search />
+                  <Search onSubmit={getData}/>
                 </div>
                
                 <Home />
                 <div className="pagination">
                 <div className="btns">
-{/*                
+
                     <button  className="btn_anterior" onClick={HandlePrev}>Before</button>
                     <button className="btn_refresh" onClick={HandleRefresh}>Refresh</button>
-                    <button className="btn_siguiente" onClick={HandleNext}>Next</button> */}
+                    <button className="btn_siguiente" onClick={HandleNext}>Next</button> 
                     
                 </div>
                 

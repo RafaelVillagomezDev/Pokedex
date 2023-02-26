@@ -6,7 +6,9 @@ function Card() {
   const results = useContext(PokemonContext);
 
   return (
+   
     <div id="container_card">
+    {console.log(results)}
       {results.map((pokemon) => {
         return (
           <Styled.CardPokemon
