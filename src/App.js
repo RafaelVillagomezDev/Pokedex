@@ -45,37 +45,33 @@ function App() {
 
  
 
-  // useEffect(()=>{
+  useEffect(()=>{
     
-  //   let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
-  //   const pokemones=[]
-  //   console.log(pokemonBuscar)
-  
+    let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
+    const pokemones=[]
+    console.log(pokemonBuscar)
+    axios.get(urlBuscar).then((response)=>{
+      
+       if(response.data.name.toLocaleLowerCase()===pokemonBuscar){
+          console.log(response.data)
+          pokemones.push(response.data)  
+          setPokemon(pokemones)
+       }
+    }
+      ).catch(function (error) {
+        // handle error
+        console.log(error);
+      });
 
-  // },[pokemonBuscar])
+  },[pokemonBuscar])
  
 
   useEffect(() => {
     
 
-    let urlBuscar=`${REACT_APP_BASE_URL}${pokemonBuscar}`;
 
     const pokemones = [];
-    if(pokemonBuscar.length>0){
-      axios.get(urlBuscar).then((response)=>{
-      
-        if(response.data.name.toLocaleLowerCase()===pokemonBuscar){
-           console.log(response)
-           pokemones.push(response.data)  
-           setPokemon(pokemones)
-        }
-     }
-       ).catch(function (error) {
-         // handle error
-         console.log(error);
-       });
-    }else{
-      axios
+    axios
       .get(url)
       .then((response) => {
         const resultado = response.data.results;
@@ -109,9 +105,7 @@ function App() {
         // handle error
         console.log(error);
       });
-    }
-   
-  }, [url,pokemonBuscar]);
+  }, [url]);
 
  
 
