@@ -13,7 +13,7 @@ export const PokemonContext = createContext();
 
 function App() {
   let [pokemon, setPokemon] = useState([]);
-  let [url,setUrl]=useState(REACT_APP_BASE_URL);
+  let [url,setUrl]=useState("https://pokeapi.co/api/v2/pokemon/");
   let [paginaNext, setPaginaNext] = useState("");
   let [paginapPrev, setPaginaPrev] = useState("");
   let [pokemonBuscar,setPokemonBuscar]=useState('')
